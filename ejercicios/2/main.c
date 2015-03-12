@@ -43,25 +43,4 @@ int main(void)
 	printf("%s", info);
 
 	curso_gestor_tarea_free(gt);
-	return 0;
 }
-
-/*void curso_gestor_tareas_ordenatareas(struct gestor_tarea *gt)
-{
-	struct tarea *aux;
-	int i,j,ntareas;
-	ntareas = curso_gestor_tarea_attr_get_u32(gt, 1);
-
-	for (i = 1; i < ntareas; i++){
-		for (j = 0; j < ntareas - 1; j++){
-			if (curso_gestor_tarea_attr_get_tarea(gt, 0, j) >
-			curso_gestor_tarea_attr_get_tarea(gt, 0, j + 1)) {
-				aux = curso_gestor_tarea_attr_get_tarea(gt, 0,
-					       				j);
-				curso_gestor_tarea_attr_set_tarea(
-						//ACOMPLETAR
-			}
-		}
-	}
-}	
-*/
