@@ -16,7 +16,7 @@ struct concesionario *curso_concesionario_alloc(void)
 
 void curso_concesionario_free(struct concesionario *con)
 {
-	int i;
+	int i = 0;
 
 	if (con->flags & (1 << CURSO_CONCESIONARIO_ATTR_DUENO))
 		xfree(con->dueno);
@@ -30,11 +30,17 @@ void curso_concesionario_free(struct concesionario *con)
 void curso_concesionario_attr_unset_coche(struct concesionario *con,
 					  uint32_t pos)
 {
+	int i = pos;
 	if (pos > 0 && pos > con->num_coches)
 		return;
 
-	con->num_coches--;
+	//con->num_coches--;
 	curso_coche_free(con->garaje[pos]);
+
+	for( i = pos; i < con->num_coches - 1; i++)
+		con->garaje[i] = con->garaje[i + 1];
+	con->num_coches--;
+
 }
 
 static void curso_concesionario_set_data(struct concesionario *con,
@@ -116,7 +122,8 @@ struct coche *curso_concesionario_attr_get_coche(struct concesionario *con,
 int curso_concesionario_snprintf(char *buf, size_t size,
 				 struct concesionario *con)
 {
-	int i, ret = 0;
+	int i = 0;
+	int ret = 0;
 
 	ret += snprintf(buf, size,
 			"el concesionario propiedad de %s, tiene %d y son:\n",

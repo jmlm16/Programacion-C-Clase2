@@ -32,5 +32,7 @@ int main(void)
 	curso_concesionario_snprintf(info, sizeof(info), con);
 	printf("%s", info);
 
+	//no libera memoria
+	curso_concesionario_free(con);
 	return 0;
 }
